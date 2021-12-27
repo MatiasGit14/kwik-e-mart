@@ -1,11 +1,14 @@
 let catalogoImportado = JSON.parse(localStorage.getItem("catalogo"));
-console.log(catalogoImportado);
 const fila = document.querySelector("#fila");
+const buscador = document.querySelector("#buscador");
+const botonBuscar = document.querySelector("#botonBuscar");
 
-catalogoImportado.forEach((e) => {
-	let columnaCarta = document.createElement("div");
-	columnaCarta.setAttribute("class", "col");
-	columnaCarta.innerHTML = `
+//Generar las cartas a mostrar
+const mostrarCartas = (cat) => {
+	cat.forEach((e) => {
+		let columnaCarta = document.createElement("div");
+		columnaCarta.setAttribute("class", "col");
+		columnaCarta.innerHTML = `
 	<div class="card" style="width: 18rem">
 		<img src=${e.img} class="card-img-top" alt=${e.nombre}/>
 		<div class="card-body">
@@ -19,10 +22,11 @@ catalogoImportado.forEach((e) => {
 				<a href="..." class="card-link">Agregar al carrito</a>
 			</div>
 	</div>`;
-	fila.appendChild(columnaCarta);
-});
-
-/*class Producto {
+		fila.appendChild(columnaCarta);
+	});
+};
+mostrarCartas(catalogoImportado);
+class Producto {
 	constructor(nombre, marca, precio, unidades, rubro) {
 		this.nombre = nombre;
 		this.marca = marca;
@@ -33,30 +37,14 @@ catalogoImportado.forEach((e) => {
 	modificarPrecio = (nuevoPrecio) => (this.precio = nuevoPrecio);
 }
 
-let cantProductos = parseInt(
-	prompt("Ingrese la cantidad de productos que va a poner en el carrito")
-);
-
 let carrito = [];
 
-const agregarProductosCarrito = () => {
-	let nombre = prompt("Ingrese el nombre del producto");
-	let marca = prompt("Ingrese la marca");
-	let precio = parseInt(prompt("Ingrese el precio"));
-	let unidades = parseInt(prompt("Ingrese la cantidad que desea agregar"));
-	let rubro = prompt(
-		"Ingrese el rubro del articulo. (Almacen, Limpieza, Comida)"
-	).toLowerCase();
-	let nuevoProducto = new Producto(nombre, marca, precio, unidades, rubro);
-	carrito.push(nuevoProducto);
-};
-
-for (i = 0; i < cantProductos; i++) {
-	agregarProductosCarrito();
-}
-
-//Funcion del buscador de productos
-let filtrado = carrito.filter((producto) => producto.rubro == "almacen");
-
-console.log(carrito);
-console.log(filtrado);*/
+//BUSCADOR POR RUBRO
+botonBuscar.addEventListener("click", (e) => {
+	e.preventDefault();
+	let filtrado = catalogoImportado.filter(
+		(prod) => prod.rubro == buscador.children[0].value.toLowerCase().trim()
+	);
+	console.log(filtrado);
+	mostrarCartas(filtrado);
+});
