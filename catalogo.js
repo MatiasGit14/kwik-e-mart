@@ -1,0 +1,88 @@
+let catalogo = [
+	{
+		nombre: "Batido Squishee",
+		precio: 60,
+		img: "assets/img/batido.jpg",
+		rubro: "bebidas",
+		descripcion: "Bebida Refrescante",
+	},
+	{
+		nombre: "Gaseosa Buzz Cola",
+		precio: 70,
+		img: "assets/img/buzzCola.jpg",
+		rubro: "bebidas",
+		descripcion: "Bebida Gaseosa",
+	},
+	{
+		nombre: "Cereales Celtic Charms",
+		precio: 80,
+		img: "assets/img/cereales.jpg",
+		rubro: "almacen",
+		descripcion: "Cereales de trigo",
+	},
+	{
+		nombre: "Goma de mascar Bubble Crum",
+		precio: 5,
+		img: "assets/img/chicle.jpg",
+		rubro: "almacen",
+		descripcion: "Goma de mascar",
+	},
+	{
+		nombre: "Snacks Chippos",
+		precio: 10,
+		img: "assets/img/chippos.jpg",
+		rubro: "almacen",
+		descripcion: "Papas fritas",
+	},
+	{
+		nombre: "Donas",
+		precio: 35,
+		img: "assets/img/donas.png",
+		rubro: "almacen",
+		descripcion: "Rosquillas glaseadas",
+	},
+	{
+		nombre: "Cerveza Duff",
+		precio: 45,
+		img: "assets/img/duff.jpg",
+		rubro: "bebidas",
+		descripcion: "Bebida alcohólica",
+	},
+	{
+		nombre: "Lache",
+		precio: 30,
+		img: "assets/img/malk.jpg",
+		rubro: "almacen",
+		descripcion: "Leche en mal estado",
+	},
+	{
+		nombre: "Helado Soy Pop",
+		precio: 50,
+		img: "assets/img/heladoDerretido.jpg",
+		rubro: "almacen",
+		descripcion: "Helado derretido",
+	},
+	{
+		nombre: "Colonia Krusty",
+		precio: 300,
+		img: "assets/img/colonia.png",
+		rubro: "bazar",
+		descripcion: "Perfume personal",
+	},
+	{
+		nombre: "Hombre Congelado",
+		precio: 1200,
+		img: "assets/img/congelado.jpg",
+		rubro: "almacen",
+		descripcion: "No despertar",
+	},
+	{
+		nombre: "Jabon Mr Chispa",
+		precio: 70,
+		img: "assets/img/mrChispa.jpg",
+		rubro: "limpieza",
+		descripcion: "Jabon para la ropa",
+	},
+];
+
+localStorage.setItem("catalogo", JSON.stringify(catalogo));
