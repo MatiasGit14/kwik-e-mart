@@ -26,6 +26,7 @@ const mostrarCartas = (cat) => {
 	});
 };
 mostrarCartas(catalogoImportado);
+
 class Producto {
 	constructor(nombre, marca, precio, unidades, rubro) {
 		this.nombre = nombre;
@@ -46,5 +47,6 @@ botonBuscar.addEventListener("click", (e) => {
 		(prod) => prod.rubro == buscador.children[0].value.toLowerCase().trim()
 	);
 	console.log(filtrado);
+	fila.innerHTML = "";
 	mostrarCartas(filtrado);
 });

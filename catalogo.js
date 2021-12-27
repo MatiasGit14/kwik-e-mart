@@ -73,7 +73,7 @@ let catalogo = [
 		nombre: "Hombre Congelado",
 		precio: 1200,
 		img: "assets/img/congelado.jpg",
-		rubro: "almacen",
+		rubro: "congelado",
 		descripcion: "No despertar",
 	},
 	{
