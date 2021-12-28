@@ -47,17 +47,15 @@ fila.addEventListener("click", (e) => {
 });
 
 const agregarCarrito = (e) => {
-	//console.log(e.target);
 	if (e.target.classList.contains("btn-outline-success")) {
-		carrito.push(
-			catalogoImportado.filter((prod) => {
-				prod.id == e.target.id;
-			})
-		);
+		let prodAgregado = catalogoImportado.find((prod) => {
+			prod.id == parseInt(e.target.id);
+		});
+		carrito.push(prodAgregado);
 	}
-	console.log(carrito);
 	e.stopPropagation();
 };
+
 //BUSCADOR POR NOMBRE
 botonBuscar.addEventListener("click", (e) => {
 	e.preventDefault();
