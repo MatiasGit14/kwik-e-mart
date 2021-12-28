@@ -38,28 +38,12 @@
 							>
 						</li>
 						<li class="nav-item dropdown">
-							<a
-								class="nav-link dropdown-toggle"
-								href="#"
-								id="navbarDropdown"
-								role="button"
-								data-bs-toggle="dropdown"
-								aria-expanded="false"
-							>
-								Rubros
-							</a>
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">Almacen</a></li>
-								<li><a class="dropdown-item" href="#">Bazar</a></li>
-
-								<li>
-									<a class="dropdown-item" href="#">Bebidas</a>
-								</li>
-
-								<li>
-									<a class="dropdown-item" href="#">Limpieza</a>
-								</li>
-							</ul>
+							<select class="form-select" aria-label="Rubros">
+								<option value="1">Almacen</option>
+								<option value="2">Bebidas</option>
+								<option value="3">Bazar</option>
+								<option value="4">Congelado</option>
+							</select>
 						</li>
 						<li class="nav-item dropdown">
 							<a
@@ -86,7 +70,7 @@
 						<input
 							class="form-control me-2"
 							type="search"
-							placeholder="Buscar por rubro"
+							placeholder="Buscar por nombre"
 							aria-label="Search"
 						/>
 						<button

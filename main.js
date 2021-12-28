@@ -2,6 +2,7 @@ let catalogoImportado = JSON.parse(localStorage.getItem("catalogo"));
 const fila = document.querySelector("#fila");
 const buscador = document.querySelector("#buscador");
 const botonBuscar = document.querySelector("#botonBuscar");
+const opcionRubro = document.querySelector(".form-select");
 
 //Generar las cartas a mostrar
 const mostrarCartas = (cat) => {
@@ -40,13 +41,51 @@ class Producto {
 
 let carrito = [];
 
-//BUSCADOR POR RUBRO
+//BUSCADOR POR NOMBRE
 botonBuscar.addEventListener("click", (e) => {
 	e.preventDefault();
-	let filtrado = catalogoImportado.filter(
-		(prod) => prod.rubro == buscador.children[0].value.toLowerCase().trim()
+	let filtrado = catalogoImportado.filter((prod) =>
+		prod.nombre
+			.toLowerCase()
+			.includes(buscador.children[0].value.toLocaleLowerCase())
 	);
-	console.log(filtrado);
+
 	fila.innerHTML = "";
 	mostrarCartas(filtrado);
 });
+
+//Buscador por rubro
+opcionRubro.addEventListener("click", (e) => {
+	e.preventDefault();
+	console.log(opcionRubro.value);
+	let rubroFiltrado;
+	switch (parseInt(opcionRubro.value)) {
+		case 1:
+			rubroFiltrado = catalogoImportado.filter((prod) => {
+				console.log(prod.rubro);
+			});
+			console.log(rubroFiltrado);
+			fila.innerHTML = "";
+			mostrarCartas(rubroFiltrado);
+			break;
+		case 2:
+			rubroFiltrado = catalogoImportado.filter((prod) => {
+				prod.rubro == "bebidas";
+			});
+			break;
+		case 3:
+			rubroFiltrado = catalogoImportado.filter((prod) => {
+				prod.rubro == "bazar";
+			});
+			break;
+		case 4:
+			rubroFiltrado = catalogoImportado.filter((prod) => {
+				prod.rubro == "congelado";
+			});
+			break;
+		default:
+			rubroFiltrado = catalogoImportado;
+			break;
+	}
+});
+//prod.rubro == buscador.children[0].value.toLowerCase().trim()
