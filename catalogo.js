@@ -1,5 +1,6 @@
 let catalogo = [
 	{
+		id: 1,
 		nombre: "Batido Squishee",
 		precio: 60,
 		img: "assets/img/batido.jpg",
@@ -7,6 +8,7 @@ let catalogo = [
 		descripcion: "Bebida Refrescante",
 	},
 	{
+		id: 2,
 		nombre: "Gaseosa Buzz Cola",
 		precio: 70,
 		img: "assets/img/buzzCola.jpg",
@@ -14,6 +16,7 @@ let catalogo = [
 		descripcion: "Bebida Gaseosa",
 	},
 	{
+		id: 3,
 		nombre: "Cereales Celtic Charms",
 		precio: 80,
 		img: "assets/img/cereales.jpg",
@@ -21,6 +24,7 @@ let catalogo = [
 		descripcion: "Cereales de trigo",
 	},
 	{
+		id: 4,
 		nombre: "Goma de mascar Bubble Crum",
 		precio: 5,
 		img: "assets/img/chicle.jpg",
@@ -28,6 +32,7 @@ let catalogo = [
 		descripcion: "Goma de mascar",
 	},
 	{
+		id: 5,
 		nombre: "Snacks Chippos",
 		precio: 10,
 		img: "assets/img/chippos.jpg",
@@ -35,6 +40,7 @@ let catalogo = [
 		descripcion: "Papas fritas",
 	},
 	{
+		id: 6,
 		nombre: "Donas",
 		precio: 35,
 		img: "assets/img/donas.png",
@@ -42,6 +48,7 @@ let catalogo = [
 		descripcion: "Rosquillas glaseadas",
 	},
 	{
+		id: 7,
 		nombre: "Cerveza Duff",
 		precio: 45,
 		img: "assets/img/duff.jpg",
@@ -49,6 +56,7 @@ let catalogo = [
 		descripcion: "Bebida alcohólica",
 	},
 	{
+		id: 8,
 		nombre: "Lache",
 		precio: 30,
 		img: "assets/img/malk.jpg",
@@ -56,6 +64,7 @@ let catalogo = [
 		descripcion: "Leche en mal estado",
 	},
 	{
+		id: 9,
 		nombre: "Helado Soy Pop",
 		precio: 50,
 		img: "assets/img/heladoDerretido.jpg",
@@ -63,6 +72,7 @@ let catalogo = [
 		descripcion: "Helado derretido",
 	},
 	{
+		id: 10,
 		nombre: "Colonia Krusty",
 		precio: 300,
 		img: "assets/img/colonia.png",
@@ -70,6 +80,7 @@ let catalogo = [
 		descripcion: "Perfume personal",
 	},
 	{
+		id: 11,
 		nombre: "Hombre Congelado",
 		precio: 1200,
 		img: "assets/img/congelado.jpg",
@@ -77,6 +88,7 @@ let catalogo = [
 		descripcion: "No despertar",
 	},
 	{
+		id: 12,
 		nombre: "Jabon Mr Chispa",
 		precio: 70,
 		img: "assets/img/mrChispa.jpg",

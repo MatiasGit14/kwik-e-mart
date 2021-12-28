@@ -20,7 +20,7 @@ const mostrarCartas = (cat) => {
 			<li class="list-group-item">$ ${e.precio}</li>
 		</ul>
 			<div class="card-body">
-				<a href="..." class="card-link">Agregar al carrito</a>
+				<button type="button" id=${e.id} class="btn btn-outline-success card-link">Agregar al carrito</button>
 			</div>
 	</div>`;
 		fila.appendChild(columnaCarta);
@@ -39,8 +39,25 @@ class Producto {
 	modificarPrecio = (nuevoPrecio) => (this.precio = nuevoPrecio);
 }
 
+//AGREGAR AL CARRITO
 let carrito = [];
 
+fila.addEventListener("click", (e) => {
+	agregarCarrito(e);
+});
+
+const agregarCarrito = (e) => {
+	//console.log(e.target);
+	if (e.target.classList.contains("btn-outline-success")) {
+		carrito.push(
+			catalogoImportado.filter((prod) => {
+				prod.id == e.target.id;
+			})
+		);
+	}
+	console.log(carrito);
+	e.stopPropagation();
+};
 //BUSCADOR POR NOMBRE
 botonBuscar.addEventListener("click", (e) => {
 	e.preventDefault();
@@ -62,11 +79,8 @@ opcionRubro.addEventListener("click", (e) => {
 	switch (parseInt(opcionRubro.value)) {
 		case 1:
 			rubroFiltrado = catalogoImportado.filter((prod) => {
-				console.log(prod.rubro);
+				prod.rubro = "almacen";
 			});
-			console.log(rubroFiltrado);
-			fila.innerHTML = "";
-			mostrarCartas(rubroFiltrado);
 			break;
 		case 2:
 			rubroFiltrado = catalogoImportado.filter((prod) => {
@@ -87,5 +101,7 @@ opcionRubro.addEventListener("click", (e) => {
 			rubroFiltrado = catalogoImportado;
 			break;
 	}
+	console.log(rubroFiltrado);
+	fila.innerHTML = "";
+	mostrarCartas(rubroFiltrado);
 });
-//prod.rubro == buscador.children[0].value.toLowerCase().trim()
