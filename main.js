@@ -1,8 +1,20 @@
-let catalogoImportado = JSON.parse(localStorage.getItem("catalogo"));
+const catalogoImportado = JSON.parse(localStorage.getItem("catalogo"));
 const fila = document.querySelector("#fila");
 const buscador = document.querySelector("#buscador");
 const botonBuscar = document.querySelector("#botonBuscar");
 const opcionRubro = document.querySelector(".form-select");
+const vaciar = document.querySelector(".vaciar");
+
+class Producto {
+	constructor(nombre, marca, precio, unidades, rubro) {
+		this.nombre = nombre;
+		this.marca = marca;
+		this.precio = precio;
+		this.unidades = unidades;
+		this.rubro = rubro;
+	}
+	modificarPrecio = (nuevoPrecio) => (this.precio = nuevoPrecio);
+}
 
 //Generar las cartas a mostrar
 const mostrarCartas = (cat) => {
@@ -28,17 +40,6 @@ const mostrarCartas = (cat) => {
 };
 mostrarCartas(catalogoImportado);
 
-class Producto {
-	constructor(nombre, marca, precio, unidades, rubro) {
-		this.nombre = nombre;
-		this.marca = marca;
-		this.precio = precio;
-		this.unidades = unidades;
-		this.rubro = rubro;
-	}
-	modificarPrecio = (nuevoPrecio) => (this.precio = nuevoPrecio);
-}
-
 //AGREGAR AL CARRITO
 let carrito = [];
 
@@ -57,6 +58,13 @@ const agregarCarrito = (e) => {
 	e.stopPropagation();
 };
 
+//VACIAR EL CARRITO
+
+vaciar.addEventListener("click", () => {
+	sessionStorage.clear();
+	fila.innerHTML = ``;
+});
+
 //BUSCADOR POR NOMBRE
 botonBuscar.addEventListener("click", (e) => {
 	e.preventDefault();
@@ -70,37 +78,17 @@ botonBuscar.addEventListener("click", (e) => {
 	mostrarCartas(filtrado);
 });
 
-//Buscador por rubro
+//BUSCADOR POR RUBRO
 opcionRubro.addEventListener("click", (e) => {
 	e.preventDefault();
-	console.log(opcionRubro.value);
-	let rubroFiltrado;
-	switch (parseInt(opcionRubro.value)) {
-		case 1:
-			rubroFiltrado = catalogoImportado.filter((prod) => {
-				prod.rubro = "almacen";
-			});
-			break;
-		case 2:
-			rubroFiltrado = catalogoImportado.filter((prod) => {
-				prod.rubro == "bebidas";
-			});
-			break;
-		case 3:
-			rubroFiltrado = catalogoImportado.filter((prod) => {
-				prod.rubro == "bazar";
-			});
-			break;
-		case 4:
-			rubroFiltrado = catalogoImportado.filter((prod) => {
-				prod.rubro == "congelado";
-			});
-			break;
-		default:
-			rubroFiltrado = catalogoImportado;
-			break;
+	if (e.target.value != 0) {
+		let rubroFiltrado = catalogoImportado.filter(
+			(prod) => prod.rubro == e.target.value.toLowerCase()
+		);
+		fila.innerHTML = "";
+		mostrarCartas(rubroFiltrado);
+	} else {
+		fila.innerHTML = "";
+		mostrarCartas(catalogoImportado);
 	}
-	console.log(rubroFiltrado);
-	fila.innerHTML = "";
-	mostrarCartas(rubroFiltrado);
 });

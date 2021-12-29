@@ -1,6 +1,8 @@
 //Traigo el carrito guardado en el session storage
 let carritoImportado = JSON.parse(sessionStorage.getItem("carrito"));
 const lista = document.querySelector(".list-group");
+const vaciar = document.querySelector(".vaciar");
+
 // Muestro la lista del carrito
 
 const mostrarCarrito = (carro) => {
@@ -25,3 +27,10 @@ const mostrarCarrito = (carro) => {
 	lista.appendChild(total);
 };
 mostrarCarrito(carritoImportado);
+
+//Vaciar carrito
+
+vaciar.addEventListener("click", () => {
+	sessionStorage.clear();
+	lista.innerHTML = ``;
+});
