@@ -43,16 +43,17 @@ class Producto {
 let carrito = [];
 
 fila.addEventListener("click", (e) => {
+	e.preventDefault();
 	agregarCarrito(e);
 });
 
 const agregarCarrito = (e) => {
 	if (e.target.classList.contains("btn-outline-success")) {
-		let prodAgregado = catalogoImportado.find((prod) => {
-			prod.id == parseInt(e.target.id);
-		});
-		carrito.push(prodAgregado);
+		carrito.push(
+			catalogoImportado.find((prod) => prod.id == parseInt(e.target.id))
+		);
 	}
+	sessionStorage.setItem("carrito", JSON.stringify(carrito));
 	e.stopPropagation();
 };
 
