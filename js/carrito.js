@@ -15,7 +15,10 @@ const mostrarCarrito = (carro) => {
 			"list-group-item d-flex justify-content-between align-items-center"
 		);
 		item.innerHTML = `${prod.nombre} 
-        <span class="badge badge-primary badge-pill">$${prod.precio}</span>`;
+        <span class="badge badge-primary badge-pill">$${prod.precio}</span>
+		<div type="button" id=${prod.id} class="botonEliminar">
+		<img class="iconoEliminar" src="../assets/icons/multiplicar.png"/>
+		</div>`;
 		lista.appendChild(item);
 	});
 	let total = document.createElement("li");
@@ -34,3 +37,23 @@ vaciar.addEventListener("click", () => {
 	sessionStorage.clear();
 	lista.innerHTML = ``;
 });
+
+//Eliminar elemento
+/*
+const botonElimino = document.querySelector(".botonEliminar");
+
+const eliminarArticulo = (e) => {
+	if (e.target.classList.contains("botonEliminar")) {
+		carritoImportado.pop(
+			catalogoImportado.find((prod) => prod.id == parseInt(e.target.id))
+		);
+	}
+	console.log(e.target.id);
+	sessionStorage.setItem("carrito", JSON.stringify(carritoImportado));
+	e.stopPropagation();
+};
+botonElimino.addEventListener("click", (e) => {
+	e.preventDefault();
+	eliminarArticulo(e);
+});
+*/
