@@ -51,7 +51,7 @@ fila.addEventListener("click", (e) => {
 const agregarCarrito = (e) => {
 	if (e.target.classList.contains("btn-outline-success")) {
 		carrito.push(
-			catalogoImportado.find((prod) => prod.id == parseInt(e.target.id))
+			catalogoImportado.find((prod) => prod.id === parseInt(e.target.id))
 		);
 	}
 	sessionStorage.setItem("carrito", JSON.stringify(carrito));
@@ -83,7 +83,7 @@ opcionRubro.addEventListener("click", (e) => {
 	e.preventDefault();
 	if (e.target.value != 0) {
 		let rubroFiltrado = catalogoImportado.filter(
-			(prod) => prod.rubro == e.target.value.toLowerCase()
+			(prod) => prod.rubro === e.target.value.toLowerCase()
 		);
 		fila.innerHTML = "";
 		mostrarCartas(rubroFiltrado);

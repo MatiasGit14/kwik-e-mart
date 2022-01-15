@@ -23,3 +23,13 @@ h2 {
 .iconoEliminar {
 	height: 20px;
 }
+
+.rubros {
+	border: none;
+	background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity));
+}
+
+.botonEliminar {
+	color: red;
+	font-weight: 800;
+}

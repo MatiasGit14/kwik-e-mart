@@ -17,7 +17,7 @@ const mostrarCarrito = (carro) => {
 		item.innerHTML = `${prod.nombre} 
         <span class="badge badge-primary badge-pill">$${prod.precio}</span>
 		<div type="button" id=${prod.id} class="botonEliminar">
-		<img class="iconoEliminar" src="../assets/icons/multiplicar.png"/>
+		X
 		</div>`;
 		lista.appendChild(item);
 	});
@@ -38,22 +38,23 @@ vaciar.addEventListener("click", () => {
 	lista.innerHTML = ``;
 });
 
-//Eliminar elemento
-/*
-const botonElimino = document.querySelector(".botonEliminar");
+//Eliminar elemento con jQuery
 
-const eliminarArticulo = (e) => {
-	if (e.target.classList.contains("botonEliminar")) {
-		carritoImportado.pop(
-			catalogoImportado.find((prod) => prod.id == parseInt(e.target.id))
+$(() => {
+	const botonEliminar = $(".botonEliminar");
+
+	function eliminarArticulo(e) {
+		console.log(e.target.id);
+		carritoImportado = carritoImportado.filter(
+			(prod) => prod.id !== parseInt(e.target.id)
 		);
+		console.log(carritoImportado);
+		sessionStorage.setItem("carrito", JSON.stringify(carritoImportado));
+		lista.innerHTML = "";
+		mostrarCarrito(carritoImportado);
 	}
-	console.log(e.target.id);
-	sessionStorage.setItem("carrito", JSON.stringify(carritoImportado));
-	e.stopPropagation();
-};
-botonElimino.addEventListener("click", (e) => {
-	e.preventDefault();
-	eliminarArticulo(e);
+	botonEliminar.on("click", function (e) {
+		e.preventDefault();
+		eliminarArticulo(e);
+	});
 });
-*/
