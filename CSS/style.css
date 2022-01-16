@@ -25,3 +25,9 @@ h2 {
 .botonEliminar {
   color: red;
   font-weight: 800; }
+
+.escondido {
+  display: none; }
+
+#alerta {
+  display: none; }
