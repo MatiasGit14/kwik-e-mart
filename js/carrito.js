@@ -36,6 +36,7 @@ mostrarCarrito(carritoImportado);
 vaciar.addEventListener("click", () => {
 	sessionStorage.clear();
 	lista.innerHTML = ``;
+	mostrarCarrito(carritoImportado);
 });
 
 //Eliminar elemento con jQuery
@@ -44,11 +45,9 @@ $(() => {
 	const botonEliminar = $(".botonEliminar");
 
 	function eliminarArticulo(e) {
-		console.log(e.target.id);
 		carritoImportado = carritoImportado.filter(
 			(prod) => prod.id !== parseInt(e.target.id)
 		);
-		console.log(carritoImportado);
 		sessionStorage.setItem("carrito", JSON.stringify(carritoImportado));
 		lista.innerHTML = "";
 		mostrarCarrito(carritoImportado);
