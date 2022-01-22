@@ -24,10 +24,25 @@ h2 {
 
 .botonEliminar {
   color: red;
-  font-weight: 800; }
+  font-weight: 800;
+  background-color: transparent;
+  border: none; }
 
 .escondido {
   display: none; }
 
 #alerta {
   display: none; }
+
+.alternativo {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif; }
+
+.backHome {
+  color: green;
+  font-family: Arial, Helvetica, sans-serif; }
+
+.cartaSimpson {
+  margin: 30px auto; }

@@ -1,59 +1,91 @@
-//Traigo el carrito guardado en el session storage
-let carritoImportado = JSON.parse(sessionStorage.getItem("carrito"));
-const lista = document.querySelector(".list-group");
-const vaciar = document.querySelector(".vaciar");
-
-// Muestro la lista del carrito
-
-const mostrarCarrito = (carro) => {
-	let suma = 0;
-	carro.forEach((prod) => {
-		suma = prod.precio + suma;
-		let item = document.createElement("li");
-		item.setAttribute(
-			"class",
-			"list-group-item d-flex justify-content-between align-items-center"
-		);
-		item.innerHTML = `${prod.nombre} 
-        <span class="badge badge-primary badge-pill">$${prod.precio}</span>
-		<div type="button" id=${prod.id} class="botonEliminar">
-		X
-		</div>`;
-		lista.appendChild(item);
-	});
-	let total = document.createElement("li");
-	total.setAttribute(
-		"class",
-		"list-group-item d-flex justify-content-between align-items-center"
-	);
-	total.innerHTML = `<b>Total</b><span class="badge badge-primary badge-pill">$${suma}</span>`;
-	lista.appendChild(total);
-};
-mostrarCarrito(carritoImportado);
-
-//Vaciar carrito
-
-vaciar.addEventListener("click", () => {
-	sessionStorage.clear();
-	lista.innerHTML = ``;
-	mostrarCarrito(carritoImportado);
-});
-
-//Eliminar elemento con jQuery
-
 $(() => {
-	const botonEliminar = $(".botonEliminar");
+	if (sessionStorage.getItem("carrito") != null) {
+		//TRAIGO EL CARRITO GUARDADO EN EL SESSION STORAGE
+		let carritoImportado = JSON.parse(sessionStorage.getItem("carrito"));
 
-	function eliminarArticulo(e) {
-		carritoImportado = carritoImportado.filter(
-			(prod) => prod.id !== parseInt(e.target.id)
-		);
-		sessionStorage.setItem("carrito", JSON.stringify(carritoImportado));
-		lista.innerHTML = "";
+		// VARIABLES PARA MANIPULAR EL DOM
+		const lista = $(".list-group");
+
+		// MOSTRAR LA LISTA DEL CARRITO
+
+		const mostrarCarrito = (carro) => {
+			carro.forEach((prod) => {
+				lista.append(`
+			<li class="list-group-item d-flex justify-content-between align-items-center" > ${prod.nombre} 
+			<span class="badge badge-primary badge-pill">$${prod.precio}</span>
+			<button id=${prod.id} class="botonEliminar">X</button>
+			</li>`);
+			});
+		};
 		mostrarCarrito(carritoImportado);
+
+		//CALCULO EL VALOR TOTAL
+		const calcularTotal = (carro) => {
+			//variable para calcular el total
+			let valorTotal = 0;
+			carro.forEach((prod) => (valorTotal += prod.precio));
+			return valorTotal;
+		};
+
+		const mostrarTotal = (carro) => {
+			lista.append(
+				`<li class="list-group-item d-flex justify-content-between align-items-center"> 
+				<b>Total</b><span class="badge badge-primary badge-pill">$
+				${calcularTotal(carro)}</span>
+				</li>`
+			);
+		};
+		mostrarTotal(carritoImportado);
+
+		/* **EVENTOS** */
+
+		//VACIAR CARRITO
+		$(".vaciar").on("click", function () {
+			sessionStorage.clear();
+			lista.remove();
+		});
+
+		//ELIMINAR UN ELEMENTO SOLO DEL CARRITO
+		$(".botonEliminar").on("click", function () {
+			$(this).parent().remove();
+			carritoImportado = carritoImportado.filter(
+				(prod) => prod.id !== parseInt(this.id)
+			);
+			sessionStorage.setItem("carrito", JSON.stringify(carritoImportado));
+			//Elimino el total anterior para que no queden dos totales
+			$("li").last().remove();
+			mostrarTotal(carritoImportado);
+		});
+
+		//CONSUMO DE API CON AJAX
+		const url = "https://thesimpsonsquoteapi.glitch.me/quotes";
+		$(".simpsonsButton").on("click", function () {
+			$.get(url, function (data, status) {
+				let datos = data[0];
+				if (status === "success") {
+					$(".principal").append(
+						`<div class="card cartaSimpson" style="width: 18rem;">
+							<img class="card-img-top" src="${datos.image}" alt="Simpson Character">
+							<div class="card-body">
+						  	<h5 class="card-title">${datos.character}</h5>
+						  	<p class="card-text">${datos.quote}</p>
+							</div>
+					  	</div>`
+					);
+					//Ouclto la carta asi no se acumulan al apretar varias veces el boton
+					$(".cartaSimpson").delay(1500).fadeOut(2000);
+				} else {
+					$(".principal").append(
+						`<p>Lo siento Los Simpsons no estan disponibles ahora</p> <`
+					);
+				}
+			});
+		});
+	} else {
+		$(".principal")
+			.addClass("alternativo")
+			.append(
+				`<p>Aún no has agregado nada a tu carrito :(</p> <a class="backHome" href="../index.html"">Vuelve al market y añade algo</a>`
+			);
 	}
-	botonEliminar.on("click", function (e) {
-		e.preventDefault();
-		eliminarArticulo(e);
-	});
 });
