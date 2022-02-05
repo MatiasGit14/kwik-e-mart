@@ -4,5 +4,7 @@ Carrito de Compras de articulos que encontrarias en la tienda de Apu...
 Comandos para iniciar el SCSS..
 
 npm install
-npm run-watch-css
+
+
+npm run watch-css
 
