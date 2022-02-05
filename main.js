@@ -13,7 +13,7 @@ class Producto {
 		this.marca = marca;
 		this.precio = precio;
 		this.unidades = unidades;
-		this.rubro = rubro;
+		this.cantidad = cantidad;
 	}
 	modificarPrecio = (nuevoPrecio) => (this.precio = nuevoPrecio);
 }
@@ -49,10 +49,23 @@ let carrito = [];
 
 const agregarCarrito = (e) => {
 	if (e.target.classList.contains("btn-outline-success")) {
-		carrito.push(
-			catalogoImportado.find((prod) => prod.id === parseInt(e.target.id))
-		);
+		//Me fijo si el articulo ya se habia agregado y que me devuelva true si ya esta
+		let incluido = carrito.some((prod) => prod.id === parseInt(e.target.id));
+
+		//Si ya esta en el carrito, busco ese articulo y le modifico la cantidad
+		if (incluido) {
+			let nuevaCantidad = carrito.find(
+				(prod) => prod.id === parseInt(e.target.id)
+			);
+			nuevaCantidad.cantidad += 1;
+		} else {
+			//Si no esta en el carrito lo pusheo entero
+			carrito.push(
+				catalogoImportado.find((prod) => prod.id === parseInt(e.target.id))
+			);
+		}
 	}
+
 	sessionStorage.setItem("carrito", JSON.stringify(carrito));
 	e.stopPropagation();
 };

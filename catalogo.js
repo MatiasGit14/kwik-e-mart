@@ -6,6 +6,7 @@ let catalogo = [
 		img: "assets/img/batido.jpg",
 		rubro: "bebidas",
 		descripcion: "Bebida Refrescante",
+		cantidad: 1,
 	},
 	{
 		id: 2,
@@ -14,6 +15,7 @@ let catalogo = [
 		img: "assets/img/buzzCola.jpg",
 		rubro: "bebidas",
 		descripcion: "Bebida Gaseosa",
+		cantidad: 1,
 	},
 	{
 		id: 3,
@@ -22,6 +24,7 @@ let catalogo = [
 		img: "assets/img/cereales.jpg",
 		rubro: "almacen",
 		descripcion: "Cereales de trigo",
+		cantidad: 1,
 	},
 	{
 		id: 4,
@@ -30,6 +33,7 @@ let catalogo = [
 		img: "assets/img/chicle.jpg",
 		rubro: "almacen",
 		descripcion: "Goma de mascar",
+		cantidad: 1,
 	},
 	{
 		id: 5,
@@ -38,6 +42,7 @@ let catalogo = [
 		img: "assets/img/chippos.jpg",
 		rubro: "almacen",
 		descripcion: "Papas fritas",
+		cantidad: 1,
 	},
 	{
 		id: 6,
@@ -46,6 +51,7 @@ let catalogo = [
 		img: "assets/img/donas.png",
 		rubro: "almacen",
 		descripcion: "Rosquillas glaseadas",
+		cantidad: 1,
 	},
 	{
 		id: 7,
@@ -54,6 +60,7 @@ let catalogo = [
 		img: "assets/img/duff.jpg",
 		rubro: "bebidas",
 		descripcion: "Bebida alcohólica",
+		cantidad: 1,
 	},
 	{
 		id: 8,
@@ -62,6 +69,7 @@ let catalogo = [
 		img: "assets/img/malk.jpg",
 		rubro: "almacen",
 		descripcion: "Leche en mal estado",
+		cantidad: 1,
 	},
 	{
 		id: 9,
@@ -70,6 +78,7 @@ let catalogo = [
 		img: "assets/img/heladoDerretido.jpg",
 		rubro: "almacen",
 		descripcion: "Helado derretido",
+		cantidad: 1,
 	},
 	{
 		id: 10,
@@ -78,6 +87,7 @@ let catalogo = [
 		img: "assets/img/colonia.png",
 		rubro: "bazar",
 		descripcion: "Perfume personal",
+		cantidad: 1,
 	},
 	{
 		id: 11,
@@ -86,6 +96,7 @@ let catalogo = [
 		img: "assets/img/congelado.jpg",
 		rubro: "congelado",
 		descripcion: "No despertar",
+		cantidad: 1,
 	},
 	{
 		id: 12,
@@ -94,6 +105,7 @@ let catalogo = [
 		img: "assets/img/mrChispa.jpg",
 		rubro: "limpieza",
 		descripcion: "Jabon para la ropa",
+		cantidad: 1,
 	},
 ];
 

@@ -5,16 +5,25 @@ $(() => {
 
 		// VARIABLES PARA MANIPULAR EL DOM
 		const lista = $(".list-group");
+		let cantidad = 1;
 
 		// MOSTRAR LA LISTA DEL CARRITO
 
 		const mostrarCarrito = (carro) => {
 			carro.forEach((prod) => {
 				lista.append(`
-			<li class="list-group-item d-flex justify-content-between align-items-center" > ${prod.nombre} 
-			<span class="badge badge-primary badge-pill">$${prod.precio}</span>
-			<button id=${prod.id} class="botonEliminar">X</button>
-			</li>`);
+					<li class="list-group-item d-flex justify-content-between align-items-center" > 
+						<span class="nombreProducto">${prod.nombre}</span>
+						<div class="contenedorContador">
+							<button class='btn btn-info down_count'><i class='icon-minus'>-</i></button>
+							<span class="contadorUnidades">${prod.cantidad}</span>
+							<button class='btn btn-info up_count'><i class='icon-plus'>+</i></button>
+						</div>
+						<span class="badge badge-primary badge-pill">$${
+							prod.precio * prod.cantidad
+						}</span>
+						<span><button id=${prod.id} class="botonEliminar">X</button></span>
+					</li>`);
 			});
 		};
 		mostrarCarrito(carritoImportado);
@@ -23,15 +32,16 @@ $(() => {
 		const calcularTotal = (carro) => {
 			//variable para calcular el total
 			let valorTotal = 0;
-			carro.forEach((prod) => (valorTotal += prod.precio));
+			carro.forEach((prod) => (valorTotal += prod.precio * prod.cantidad));
 			return valorTotal;
 		};
 
 		const mostrarTotal = (carro) => {
 			lista.append(
 				`<li class="list-group-item d-flex justify-content-between align-items-center"> 
-				<b>Total</b><span class="badge badge-primary badge-pill">$
-				${calcularTotal(carro)}</span>
+					<p class="total">Total</p>
+					<span class="badge badge-primary badge-pill totalNumero">$
+					${calcularTotal(carro)}</span>
 				</li>`
 			);
 		};
@@ -47,7 +57,7 @@ $(() => {
 
 		//ELIMINAR UN ELEMENTO SOLO DEL CARRITO
 		$(".botonEliminar").on("click", function () {
-			$(this).parent().remove();
+			$(this).parent().parent().remove();
 			carritoImportado = carritoImportado.filter(
 				(prod) => prod.id !== parseInt(this.id)
 			);
@@ -57,6 +67,15 @@ $(() => {
 			mostrarTotal(carritoImportado);
 		});
 
+		//BOTONES + y - CANTIDADES
+		$(".up_count").on("click", function () {
+			console.log($(this).parent().children()[1].text());
+		});
+
+		$(".down_count").on("click", function () {
+			console.log($(this).parent().children()[1]);
+		});
+		//CON
 		//CONSUMO DE API CON AJAX
 		const url = "https://thesimpsonsquoteapi.glitch.me/quotes";
 		$(".simpsonsButton").on("click", function () {

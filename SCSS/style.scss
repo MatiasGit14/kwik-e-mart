@@ -20,42 +20,90 @@ h2 {
 	color: black;
 }
 
-.iconoEliminar {
-	height: 20px;
-}
-
+/*Rubros Navbar*/
 .rubros {
 	border: none;
 	background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity));
 }
 
-.botonEliminar {
-	color: red;
-	font-weight: 800;
-	background-color: transparent;
-	border: none;
-}
-
+/*Esconde el circulo que indica que hay productos en el carrito*/
 .escondido {
 	display: none;
 }
 
+/*Cartel de agregado al carrito*/
 #alerta {
 	display: none;
 }
 
+/*Texto alternativo por si se entra al carrito y esta vacio*/
 .alternativo {
 	text-align: center;
 	margin-top: 25px;
 	font-size: 30px;
 	font-family: Arial, Helvetica, sans-serif;
 }
-
 .backHome {
 	color: green;
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+/*Carta donde se muestra el personaje Simpson*/
 .cartaSimpson {
 	margin: 30px auto;
+}
+
+/*Carrito*/
+.botonEliminar {
+	color: red;
+	font-weight: 800;
+	background-color: transparent;
+	border: none;
+}
+.nombreProducto {
+	width: 32%;
+}
+.total {
+	font-weight: bold;
+	justify-content: flex-start;
+}
+.totalNumero {
+	width: 30%;
+}
+
+.contenedorContador {
+	width: 30%;
+}
+
+.contadorUnidades {
+	border: none;
+	text-align: center;
+	text-decoration: none;
+	background-color: transparent;
+}
+// input[type="number"] {
+// 	appearance: textfield;
+// }
+// input[type="number"]::-webkit-inner-spin-button,
+// input[type="number"]::-webkit-outer-spin-button,
+// input[type="number"]:hover::-webkit-inner-spin-button,
+// input[type="number"]:hover::-webkit-outer-spin-button {
+// 	-webkit-appearance: none;
+// 	margin: 0;
+// }
+
+.down_count,
+.up_count {
+	background-color: rgb(82, 105, 182);
+	border-color: rgb(82, 105, 182);
+}
+
+.icon-plus,
+.icon-minus {
+	color: white;
+	font-weight: 700;
+}
+.btn-addCart {
+	background-color: rgb(82, 105, 182);
+	border-color: rgb(82, 105, 182);
 }
