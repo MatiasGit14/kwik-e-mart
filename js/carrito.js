@@ -4,8 +4,7 @@ $(() => {
 		let carritoImportado = JSON.parse(sessionStorage.getItem("carrito"));
 
 		// VARIABLES PARA MANIPULAR EL DOM
-		const lista = $(".list-group");
-		let cantidad = 1;
+		let lista = $(".list-group");
 
 		// MOSTRAR LA LISTA DEL CARRITO
 
@@ -57,7 +56,9 @@ $(() => {
 
 		//ELIMINAR UN ELEMENTO SOLO DEL CARRITO
 		$(".botonEliminar").on("click", function () {
+			//Elimino la parte visual
 			$(this).parent().parent().remove();
+			//Elimino del storage
 			carritoImportado = carritoImportado.filter(
 				(prod) => prod.id !== parseInt(this.id)
 			);
@@ -69,13 +70,76 @@ $(() => {
 
 		//BOTONES + y - CANTIDADES
 		$(".up_count").on("click", function () {
-			console.log($(this).parent().children()[1].text());
+			//Guardo la cantidad anterior y le sumo 1 unidad
+			let cantAnterior = parseInt($(this).prev().text());
+			//Cambio la cantidad en la vista
+			$(this)
+				.prev()
+				.text(cantAnterior + 1);
+			//Busco el id de este producto
+			let idProducto = $(this)
+				.parent()
+				.parent()
+				.children()
+				.last()
+				.children()
+				.attr("id");
+			//Busco el producto en el carrito del storage
+			let prodAcambiar = carritoImportado.find(
+				(prod) => prod.id === parseInt(idProducto)
+			);
+			//Guardo la posicion en el array para no desordenarlo
+			let posicionEnArray = carritoImportado.indexOf(prodAcambiar);
+			//Le agregao 1 en la cantidad del producto
+			prodAcambiar.cantidad += 1;
+			//Reemplazo el producto en el array
+			carritoImportado.splice(posicionEnArray, 1, prodAcambiar);
+			//Seteo en el session Storage con la nueva cantidad
+			sessionStorage.setItem("carrito", JSON.stringify(carritoImportado));
+			//Luego renderizar solo la nueva lista del carrito
+			//$("li").remove();
+			mostrarCarrito(carritoImportado);
+			mostrarTotal(carritoImportado);
 		});
 
 		$(".down_count").on("click", function () {
-			console.log($(this).parent().children()[1]);
+			//Guardo la cantidad anterior y le resto 1 unidad
+			let cantAnterior = parseInt($(this).next().text());
+			//Evaluo que la cantidad no sea menor a 1
+			if (cantAnterior > 1) {
+				$(this)
+					.next()
+					.text(cantAnterior - 1);
+
+				//Busco el id de este producto
+				let idProducto = $(this)
+					.parent()
+					.parent()
+					.children()
+					.last()
+					.children()
+					.attr("id");
+				//Busco el producto en el carrito del storage
+				let prodAcambiar = carritoImportado.find(
+					(prod) => prod.id === parseInt(idProducto)
+				);
+
+				//Guardo la posicion en el array para no desordenarlo
+				let posicionEnArray = carritoImportado.indexOf(prodAcambiar);
+				//Le agregao 1 en la cantidad del producto
+				prodAcambiar.cantidad -= 1;
+				//Reemplazo el producto en el array
+				carritoImportado.splice(posicionEnArray, 1, prodAcambiar);
+				//Seteo en el session Storage con la nueva cantidad
+				sessionStorage.setItem("carrito", JSON.stringify(carritoImportado));
+				//Luego renderizar solo la nueva lista del carrito
+				//Elimino la parte visual
+				//$(this).parent().parent().parent().children().remove();
+				mostrarCarrito(carritoImportado);
+				mostrarTotal(carritoImportado);
+			}
 		});
-		//CON
+
 		//CONSUMO DE API CON AJAX
 		const url = "https://thesimpsonsquoteapi.glitch.me/quotes";
 		$(".simpsonsButton").on("click", function () {
