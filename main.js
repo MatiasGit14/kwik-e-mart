@@ -34,7 +34,7 @@ const mostrarCartas = (cat) => {
 				<li class="list-group-item">$ ${e.precio}</li>
 			</ul>
 				<div class="card-body">
-					<button  type="button" id=${e.id} class="btn btn-outline-success card-link">Agregar al carrito</button>
+					<button  type="button" id=${e.id} class="btn btn-outline-success card-link agregarCarrito">Agregar al carrito</button>
 				</div>
 		</div>`;
 		fila.appendChild(columnaCarta);
@@ -48,7 +48,10 @@ mostrarCartas(catalogoImportado);
 let carrito = [];
 
 const agregarCarrito = (e) => {
-	if (e.target.classList.contains("btn-outline-success")) {
+	console.log(e.target);
+
+	//Indico que solo tome el evento si uno de los elementos HTML tiene esta clase
+	if (e.target.classList.contains("agregarCarrito")) {
 		//Me fijo si el articulo ya se habia agregado y que me devuelva true si ya esta
 		let incluido = carrito.some((prod) => prod.id === parseInt(e.target.id));
 
@@ -58,11 +61,15 @@ const agregarCarrito = (e) => {
 				(prod) => prod.id === parseInt(e.target.id)
 			);
 			nuevaCantidad.cantidad += 1;
+			// Alerta de que se agrego correctamente
+			$("#alerta").fadeIn(1500).fadeOut(3000);
 		} else {
 			//Si no esta en el carrito lo pusheo entero
 			carrito.push(
 				catalogoImportado.find((prod) => prod.id === parseInt(e.target.id))
 			);
+			// Alerta de que se agrego correctamente
+			$("#alerta").fadeIn(1500).fadeOut(3000);
 		}
 	}
 
@@ -87,8 +94,6 @@ fila.addEventListener("click", (e) => {
 	e.preventDefault();
 	agregarCarrito(e);
 	mostrarNotif();
-	// Alerta de que se agrego correctamente
-	$("#alerta").fadeIn(1500).fadeOut(3000);
 });
 
 //VACIAR EL CARRITO

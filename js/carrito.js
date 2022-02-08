@@ -97,7 +97,7 @@ $(() => {
 			//Seteo en el session Storage con la nueva cantidad
 			sessionStorage.setItem("carrito", JSON.stringify(carritoImportado));
 			//Luego renderizar solo la nueva lista del carrito
-			//$("li").remove();
+			lista.children().remove();
 			mostrarCarrito(carritoImportado);
 			mostrarTotal(carritoImportado);
 		});
@@ -134,7 +134,7 @@ $(() => {
 				sessionStorage.setItem("carrito", JSON.stringify(carritoImportado));
 				//Luego renderizar solo la nueva lista del carrito
 				//Elimino la parte visual
-				//$(this).parent().parent().parent().children().remove();
+				lista.children().remove();
 				mostrarCarrito(carritoImportado);
 				mostrarTotal(carritoImportado);
 			}
