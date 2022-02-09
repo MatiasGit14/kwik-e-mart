@@ -46,16 +46,60 @@ $(() => {
 		};
 		mostrarTotal(carritoImportado);
 
+		//BOTON FINALIZAR COMPRA -
+		if (carritoImportado.length > 0) {
+			$(".principal").append(
+				`<div class="container containerBotonFin"><button class="btn btn-success botonFinalizar" data-toggle="modal" data-target="#buyModal">Finalizar Compra</button></div>
+				<div
+				class='modal fade'
+				id='buyModal'
+				tabindex='-1'
+				role='dialog'
+				aria-labelledby='exampleModalLabel'
+				aria-hidden='true'>
+				<div class='modal-dialog' role='document'>
+					<div class='modal-content'>
+						<div class='modal-header'>
+							<h5 class='modal-title' id='exampleModalLabel'>
+								Kwik-E-Mart
+							</h5>
+							<button
+								type='button'
+								class='close closeModal'
+								data-dismiss='modal'
+								aria-label='Close'>
+								<span aria-hidden='true'>&times;</span>
+							</button>
+						</div>
+						<div class='modal-body'>Gracias vuelva prontos!</div>
+						<div class='modal-footer'>
+							<button
+								type='button'
+								class='btn btn-secondary closeModal'
+								data-dismiss='modal'>
+								Cerrar
+							</button>
+							<button type='button' class='btn btn-primary closeModalComprar'>
+								Comprar
+							</button>
+						</div>
+					</div>
+				</div>
+				
+			</div>`
+			);
+		}
+
 		/* **EVENTOS** */
 
 		//VACIAR CARRITO
-		$(".vaciar").on("click", function () {
+		$(document).on("click", ".vaciar", function () {
 			sessionStorage.clear();
 			lista.remove();
 		});
 
 		//ELIMINAR UN ELEMENTO SOLO DEL CARRITO
-		$(".botonEliminar").on("click", function () {
+		$(document).on("click", ".botonEliminar", function () {
 			//Elimino la parte visual
 			$(this).parent().parent().remove();
 			//Elimino del storage
@@ -69,7 +113,7 @@ $(() => {
 		});
 
 		//BOTONES + y - CANTIDADES
-		$(".up_count").on("click", function () {
+		$(document).on("click", ".up_count", function () {
 			//Guardo la cantidad anterior y le sumo 1 unidad
 			let cantAnterior = parseInt($(this).prev().text());
 			//Cambio la cantidad en la vista
@@ -102,7 +146,7 @@ $(() => {
 			mostrarTotal(carritoImportado);
 		});
 
-		$(".down_count").on("click", function () {
+		$(document).on("click", ".down_count", function () {
 			//Guardo la cantidad anterior y le resto 1 unidad
 			let cantAnterior = parseInt($(this).next().text());
 			//Evaluo que la cantidad no sea menor a 1
@@ -140,9 +184,34 @@ $(() => {
 			}
 		});
 
-		//CONSUMO DE API CON AJAX
+		//BOTON FINALIZAR COMPRA - MODAL
+
+		$(document).on("click", ".botonFinalizar", function () {
+			if (carritoImportado.length > 0) {
+				$("#buyModal").modal("show");
+			} else {
+				$(".principal")
+					.addClass("alternativo")
+					.append(
+						`<p>Aún no has agregado nada a tu carrito :(</p> <a class="backHome" href="../index.html"">Vuelve al market y añade algo</a>`
+					);
+				lista.remove();
+				$(".botonFinalizar").hide();
+			}
+		});
+		$(document).on("click", ".closeModal", function () {
+			$("#buyModal").modal("hide");
+		});
+		$(document).on("click", ".closeModalComprar", function () {
+			sessionStorage.clear();
+			$("#buyModal").modal("hide");
+			lista.remove();
+			$(".botonFinalizar").hide();
+		});
+
+		//FRASES DE LOS SIMPSON - CONSUMO DE API CON AJAX
 		const url = "https://thesimpsonsquoteapi.glitch.me/quotes";
-		$(".simpsonsButton").on("click", function () {
+		$(document).on("click", ".simpsonsButton", function () {
 			$.get(url, function (data, status) {
 				let datos = data[0];
 				if (status === "success") {

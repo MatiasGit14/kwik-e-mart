@@ -82,3 +82,11 @@ h2 {
 .btn-addCart {
   background-color: #5269b6;
   border-color: #5269b6; }
+
+.containerBotonFin {
+  text-align: end;
+  margin-right: -13px;
+  margin-top: 25px; }
+
+.botonFinalizar {
+  text-align: right; }

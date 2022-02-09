@@ -81,16 +81,6 @@ h2 {
 	text-decoration: none;
 	background-color: transparent;
 }
-// input[type="number"] {
-// 	appearance: textfield;
-// }
-// input[type="number"]::-webkit-inner-spin-button,
-// input[type="number"]::-webkit-outer-spin-button,
-// input[type="number"]:hover::-webkit-inner-spin-button,
-// input[type="number"]:hover::-webkit-outer-spin-button {
-// 	-webkit-appearance: none;
-// 	margin: 0;
-// }
 
 .down_count,
 .up_count {
@@ -106,4 +96,13 @@ h2 {
 .btn-addCart {
 	background-color: rgb(82, 105, 182);
 	border-color: rgb(82, 105, 182);
+}
+
+.containerBotonFin {
+	text-align: end;
+	margin-right: -13px;
+	margin-top: 25px;
+}
+.botonFinalizar {
+	text-align: right;
 }
