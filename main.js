@@ -6,18 +6,6 @@ const botonBuscar = document.querySelector("#botonBuscar");
 const opcionRubro = document.querySelector(".form-select");
 const vaciar = document.querySelector(".vaciar");
 
-// OBJETO DE PRODUCTOS
-class Producto {
-	constructor(nombre, marca, precio, unidades, rubro) {
-		this.nombre = nombre;
-		this.marca = marca;
-		this.precio = precio;
-		this.unidades = unidades;
-		this.cantidad = cantidad;
-	}
-	modificarPrecio = (nuevoPrecio) => (this.precio = nuevoPrecio);
-}
-
 //Generar las cartas a mostrar
 const mostrarCartas = (cat) => {
 	cat.forEach((e) => {

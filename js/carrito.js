@@ -6,8 +6,8 @@ $(() => {
 		// VARIABLES PARA MANIPULAR EL DOM
 		let lista = $(".list-group");
 
+		/****FUNCIONES ****/
 		// MOSTRAR LA LISTA DEL CARRITO
-
 		const mostrarCarrito = (carro) => {
 			carro.forEach((prod) => {
 				lista.append(`
@@ -27,7 +27,7 @@ $(() => {
 		};
 		mostrarCarrito(carritoImportado);
 
-		//CALCULO EL VALOR TOTAL
+		//CALCULO EL VALOR TOTAL Y LO MUESTRO
 		const calcularTotal = (carro) => {
 			//variable para calcular el total
 			let valorTotal = 0;
@@ -46,7 +46,7 @@ $(() => {
 		};
 		mostrarTotal(carritoImportado);
 
-		//BOTON FINALIZAR COMPRA -
+		//VISTA BOTON FINALIZAR COMPRA -
 		if (carritoImportado.length > 0) {
 			$(".principal").append(
 				`<div class="container containerBotonFin"><button class="btn btn-success botonFinalizar" data-toggle="modal" data-target="#buyModal">Finalizar Compra</button></div>
