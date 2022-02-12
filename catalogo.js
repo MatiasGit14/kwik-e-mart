@@ -109,4 +109,6 @@ let catalogo = [
 	},
 ];
 
-localStorage.setItem("catalogo", JSON.stringify(catalogo));
+if (localStorage.length === 0) {
+	localStorage.setItem("catalogo", JSON.stringify(catalogo));
+}

@@ -36,8 +36,6 @@ mostrarCartas(catalogoImportado);
 let carrito = [];
 
 const agregarCarrito = (e) => {
-	console.log(e.target);
-
 	//Indico que solo tome el evento si uno de los elementos HTML tiene esta clase
 	if (e.target.classList.contains("agregarCarrito")) {
 		//Me fijo si el articulo ya se habia agregado y que me devuelva true si ya esta

@@ -1,4 +1,7 @@
-let catalogo = JSON.parse(localStorage.getItem("catalogo"));
+/* Inicio el catalogo vacio para evitar error de calcular ID si no es cargado el localStorage */
+let catalogo = [];
+
+catalogo = JSON.parse(localStorage.getItem("catalogo"));
 
 // OBJETO DE PRODUCTOS
 class Productos {
@@ -11,17 +14,20 @@ class Productos {
 		this.descripcion = descripcion;
 		this.cantidad = 1;
 	}
-	modificarPrecio = (nuevoPrecio) => (this.precio = nuevoPrecio);
 }
 
+/*FUNCION PARA AGREGAR PRODUCTOS*/
 const nuevoProducto = () => {
+	//Asigno como id 1 + del ultimo del catalogo para que sea unico
 	let nuevoId = catalogo.length + 1;
+	//Tomo los datos de los inputs
 	let nombreProd = document.querySelector(".nuevoNombre").value;
 	let precioProd = document.querySelector(".nuevoPrecio").value;
 	let imgProd = document.querySelector(".nuevaImg").value;
 	let rubroProd = document.querySelector(".nuevoRubro").value;
 	let descripcionProd = document.querySelector(".nuevaDescripcion").value;
 
+	//Creo una nueva instancia del producto con los datos tomados
 	let nuevoProd = new Productos(
 		nuevoId,
 		nombreProd,
@@ -30,17 +36,24 @@ const nuevoProducto = () => {
 		rubroProd,
 		descripcionProd
 	);
-	catalogo.push(nuevoProd);
-	localStorage.setItem("catalogo", JSON.stringify(catalogo));
+	//Chequeo que ningun campo esta vacio y pusheo el nuevo articulo al array y este array al storage
+	if (
+		nombreProd !== "" &&
+		precioProd !== "" &&
+		imgProd !== "" &&
+		rubroProd !== "" &&
+		descripcionProd !== ""
+	) {
+		catalogo.push(nuevoProd);
+		localStorage.setItem("catalogo", JSON.stringify(catalogo));
+	} else {
+		alert("Todos los campos deben estar llenos");
+	}
 };
 
 /****Evento Submit*****/
 document.querySelector(".agregarNuevoProd").addEventListener("click", (e) => {
 	e.preventDefault();
 	nuevoProducto();
+	alert("Producto agregado Correctamente");
 });
-
-console.log(catalogo);
-// LLEVAR EL NEVO ARRAY AL MAIN PARA RENDERIZAR
-//CARTEL AL SUBMIT DE CARGADO CORRECTAMENTE
-// VER DE TRANSFORMAR TODO EL CATALOGO EN UN OBJETO O COMO HAGO ESA TRANSICION
